@@ -13,20 +13,30 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo" style="text-decoration: none;">
                 <span>&#9670;</span> FIFTH FIRM <small>Consultora</small>
-            </div>
-            <nav>
+            </a>
+            
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
                 <ul>
                     <li class="active"><a href="index.html">Inicio</a></li>
                     <li class="dropdown">
-                        <a href="auditoria.html">Auditoría &#9662;</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="auditoria.html#previo">Legajo Previo</a></li>
-                            <li><a href="auditoria.html#permanente">Legajo Permanente</a></li>
-                            <li><a href="auditoria.html#ejecucion">Legajo de Ejecución</a></li>
-                        </ul>
-                    </li>
+    <a href="auditoria.html" class="dropdown-link">Auditoría</a>
+    
+    <span class="arrow-btn" id="arrow-toggle">&#9662;</span>
+    
+    <ul class="dropdown-menu" id="dropdown-sub">
+        <li><a href="previo.html">Legajo Previo</a></li>
+        <li><a href="permanente.html">Legajo Permanente</a></li>
+        <li><a href="ejecucion.html">Legajo de Ejecución</a></li>
+    </ul>
+</li>
                     <li><a href="nosotros.html">Sobre Nosotros</a></li>
                     <li><a href="contacto.html">Contáctanos</a></li>
                 </ul>
@@ -75,12 +85,49 @@
         <a href="auditoria.html" class="footer-audit-banner">
             <img src="fancesa.jpg" alt="Acceder a Auditoría">
             <div class="banner-overlay">
-                <h3>Empresa auditada</h3>
-                <p>FANCESA S.A.</p>
+                <h3>Acceda a Nuestro Portal de Auditoría Avanzada</h3>
+                <p>Empresa auditada FANCESA S.A.</p>
                 <span class="banner-btn">Ingresar Aquí &rarr;</span>
             </div>
         </a>
     </section>
+
+   <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    const arrowToggle = document.getElementById('arrow-toggle');
+    const dropdownSub = document.getElementById('dropdown-sub');
+
+    // 1. Abrir/Cerrar las 4 opciones principales con las 3 líneas
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenuBtn.classList.toggle('active');
+        navMenu.classList.toggle('open');
+        
+        if(!navMenu.classList.contains('open')) {
+            dropdownSub.classList.remove('show');
+            arrowToggle.classList.remove('rotated');
+        }
+    });
+
+    // 2. CORREGIDO: El despliegue de legajos ahora responde ÚNICAMENTE al clic en la flecha
+    arrowToggle.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        e.stopPropagation();
+        dropdownSub.classList.toggle('show');
+        arrowToggle.classList.toggle('rotated'); // Hace que la flecha gire de forma animada
+    });
+
+    // 3. Cerrar todo automáticamente si se hace clic fuera del menú
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('open');
+            dropdownSub.classList.remove('show');
+            arrowToggle.classList.remove('rotated');
+        }
+    });
+</script>
 
 </body>
 </html>
