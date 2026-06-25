@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Auditoría - FIFTH FIRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+/* --- ACTUALIZACIÓN DE ESTILOS PARA TARJETAS CON IMÁGENES --- */
+
+/* 1. Limpiamos el enlace contenedor */
+.card-link {
+    text-decoration: none;
+    display: block;
+    color: inherit; /* Mantiene el color del texto original */
+}
+
+/* 2. Actualizamos la Tarjeta (Card) */
+.card {
+    background-color: #0c0c0c;
+    border: 1px solid #222;
+    border-radius: 4px; /* Bordes suaves corporativos */
+    overflow: hidden; /* ¡IMPORTANTE! Esto contiene la imagen cuando se agranda */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Transición suave */
+    scroll-margin-top: 140px;
+    height: 100%; /* Asegura que todas tengan la misma altura si están en grid */
+    display: flex;
+    flex-direction: column; /* Alinea imagen arriba y texto abajo */
+}
+
+/* Efecto de Hover en la Tarjeta Completa (se levanta un poco) */
+/* --- CONFIGURACIÓN PARA REVELAR LA IMAGEN COMPLETA AL PASAR EL CURSOR --- */
+
+/* 1. Contenedor de la imagen en estado normal */
+.card-image {
+    width: 100%;
+    height: 180px; /* Altura inicial (recorta un poco la imagen para mantener orden) */
+    overflow: hidden;
+    background-color: #050505; /* Fondo negro puro */
+    transition: height 0.4s ease; /* Transición suave para cuando cambie de tamaño */
+}
+
+/* 2. Imagen en estado normal */
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Inicialmente se adapta al espacio */
+    transition: object-fit 0.4s ease, transform 0.4s ease;
+}
+
+/* 3. ¡EL TRUCO! Cuando el cursor pasa sobre la tarjeta (.card:hover) */
+.card:hover .card-image {
+    height: 250px; /* El contenedor se agranda hacia abajo para dar más espacio */
+}
+
+.card:hover .card-image img {
+    object-fit: contain; /* Obliga al navegador a mostrar la IMAGEN COMPLETA sin recortes */
+    transform: scale(1.05); /* Le da un ligero toque de acercamiento elegante */
+    background-color: #000000; /* Si la imagen es más angosta, rellena los lados con negro */
+}
+/* 3. Estilos para el Contenedor de la Imagen */
+.card-image {
+    width: 100%;
+    height: 200px; /* Altura fija para que todas las imágenes se vean iguales */
+    overflow: hidden; /* Esencial para el efecto de zoom interno */
+    background-color: #1a1a1a; /* Fondo oscuro mientras carga la imagen */
+}
+
+/* 4. Estilos para la Imagen Real */
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor sin deformarse */
+    transition: transform 0.5s ease; /* ¡AQUÍ ESTÁ LA MAGIA! Transición suave del zoom */
+}
+
+/* --- 5. EL EFECTO DE ZOOM (Agrandar al pasar el cursor) --- */
+/* Cuando pasas el mouse por la tarjeta (.card:hover), 
+   la imagen (.card-image img) se agranda un 10% (scale 1.1) */
+.card:hover .card-image img {
+    transform: scale(0.5.1);
+}
+
+/* 6. Estilos para el Contenido de Texto (debajo de la imagen) */
+.card-content {
+    padding: 25px; /* Espaciado interno para el texto */
+    flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+}
+
+.card-content h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.card-content p {
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>&#9670;</span> FIFTH FIRM <small>Consultora</small></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="dropdown active">
+                        <a href="auditoria.html">Auditoría &#9662;</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="previo.html">Legajo Previo</a></li>
+                            <li><a href="permanente.html">Legajo Permanente</a></li>
+                            <li><a href="auditoria.html#ejecucion">Legajo de Ejecución</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-container" style="margin-top: 120px;">
+        <h2>Estructura de Auditoría Financiera</h2>
+        <p style="color: #cccccc; margin-bottom: 40px;">Metodología organizada mediante legajos normativos para asegurar la máxima transparencia.</p>
+        
+        <div class="card-container">
+            
+            <a href="previo.html" class="card-link">
+                <div class="card" id="previo"> 
+                    <div class="card-image">
+                        <img src="prev.png" alt="Planificación de Auditoría - Legajo Previo">
+                    </div>
+                    <div class="card-content">
+                        <h3>Legajo Previo</h3>
+                        <p>Contiene la documentación de planificación preliminar, correspondencia inicial, evaluación de riesgos inicial y los términos del compromiso de auditoría.</p>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="permanente.html" class="card-link">
+                <div class="card" id="permanente">
+                    <div class="card-image">
+                        <img src="foto-permanente.jpg" alt="Documentación Corporativa - Legajo Permanente">
+                    </div>
+                    <div class="card-content">
+                        <h3>Legajo Permanente</h3>
+                        <p>Documentación de vigencia plurianual: estatutos legales, estructura organizativa, manuales de funciones internos, contratos a largo plazo y sistemas de control interno.</p>
+                    </div>
+                </div>
+            </a>
+    
+            <a href="ejecucion.html" class="card-link">
+                <div class="card" id="ejecucion">
+                    <div class="card-image">
+                        <img src="foto-ejecucion.jpg" alt="Papeles de Trabajo - Legajo de Ejecución">
+                    </div>
+                    <div class="card-content">
+                        <h3>Legajo de Ejecución</h3>
+                        <p>Compilación de los papeles de trabajo que evidencian las pruebas analíticas, hallazgos sustantivos, hojas de observaciones y la base técnica para el dictamen final.</p>
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+    </section>
+</body>
+</html>

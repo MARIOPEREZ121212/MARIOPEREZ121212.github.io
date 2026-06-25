@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Auditoría - FIFTH FIRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    
+    <style>
+        /* Modificaciones específicas para la distribución en 3 y 2 centrados */
+        .flex-container-custom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Centra los elementos de la segunda fila automáticamente */
+            gap: 30px;
+            margin-top: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Enlaces contenedores que controlan el tamaño de la tarjeta */
+        .card-link {
+            text-decoration: none; 
+            display: block; 
+            color: inherit;
+            /* Calcula el ancho para que entren exactamente 3 en la primera línea descontando el espacio del gap */
+            width: calc(33.33% - 20px); 
+            min-width: 300px; /* Evita que se colapsen en pantallas medianas */
+        }
+
+        /* Ajuste de diseño adaptativo para pantallas más pequeñas */
+        @media (max-width: 1024px) {
+            .card-link {
+                width: calc(50% - 15px); /* Se acomodan de a 2 si la pantalla es mediana */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-link {
+                width: 100%; /* Ocupan todo el ancho en celulares */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>◆</span> FIFTH FIRM <small>Consultora</small></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="dropdown active">
+                        <a href="auditoria.html">Auditoría ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="previo.html">Legajo Previo</a></li>
+                            <li><a href="permanente.html">Legajo Permanente</a></li>
+                            <li><a href="auditoria.html#ejecucion">Legajo de Ejecución</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-container" style="margin-top: 120px; text-align: center;">
+        <h2 style="display: inline-block;">LEGAJO DE EJECUCIÓN</h2>
+        <p style="color: #cccccc; margin-bottom: 40px; margin-top: 15px;">Metodología organizada mediante legajos normativos para asegurar la máxima transparencia.</p>
+        
+        <div class="flex-container-custom">
+            
+            <a href="previo.html" class="card-link">
+                <div class="card" id="previo"> 
+                    <h3>Legajo Previo</h3>
+                    <p>Contiene la documentación de planificación preliminar, correspondencia inicial, evaluación de riesgos inicial y los términos del compromiso de auditoría.</p>
+                </div>
+            </a>
+            
+            <a href="permanente.html" class="card-link">
+                <div class="card" id="permanente">
+                    <h3>Legajo Permanente</h3>
+                    <p>Documentación de vigencia plurianual: estatutos legales, estructura organizativa, manuales de funciones internos, contratos a largo plazo y sistemas de control interno.</p>
+                </div>
+            </a>
+
+            <a href="ejecucion.html" class="card-link">
+                <div class="card" id="ejecucion">
+                    <h3>Planificación de Ejecución</h3>
+                    <p>Estructuración de programas de trabajo analíticos, materialidad de la auditoría y diseño de pruebas sustantivas para la evaluación financiera.</p>
+                </div>
+            </a>
+
+            <a href="hallazgos.html" class="card-link">
+                <div class="card" id="hallazgos">
+                    <h3>Papeles de Trabajo</h3>
+                    <p>Evidencias recopiladas y centralizadas a través de planillas de hallazgos, análisis de saldos y hojas de verificación técnica.</p>
+                </div>
+            </a>
+
+            <a href="comunicacion.html" class="card-link">
+                <div class="card" id="comunicacion">
+                    <h3>Comunicación de Resultados</h3>
+                    <p>Informes técnicos finales, emisión de dictámenes independientes y control del estado de observaciones de auditoría interna.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Consultoría - FIFTH FIRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    
+    <style>
+        /* Estilos específicos para la distribución de pantalla dividida al 50% */
+        .split-container {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1100px; /* Reducimos ligeramente el ancho máximo para que quede más estético y compacto */
+    margin: 40px auto; /* El 'auto' en los lados es el que hace la magia de centrarlo */
+    background-color: #0c0c0c;
+    border: 1px solid #222;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+        /* Bloque izquierdo: Formulario (toma 1.2 partes del espacio) */
+.form-side {
+    flex: 1; 
+    padding: 40px;
+}
+
+/* Bloque derecho: Imagen (toma 0.8 partes del espacio, ideal para imágenes verticales/cuadradas) */
+.image-side {
+    flex: 0.8; 
+    position: relative;
+    min-height: 450px;
+}
+
+        .image-side img {
+    width: 100%;
+    height: 100%;
+    /* Cambiamos 'cover' por 'contain' para mostrarla completa */
+    object-fit: contain; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Opcional: añadimos un fondo oscuro por si la imagen es más baja que el formulario */
+    background-color: #0c0c0c; 
+}
+
+        /* Diseño responsivo para pantallas táctiles o celulares */
+        @media (max-width: 850px) {
+            .split-container {
+                flex-direction: column; /* Se apila verticalmente en celulares */
+            }
+            .image-side {
+                height: 300px;
+                min-height: 300px;
+            }
+            .form-side {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>&#9670;</span> FIFTH FIRM <small>Consultora</small></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="dropdown">
+                        <a href="auditoria.html">Auditoría &#9662;</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="auditoria.html#previo">Legajo Previo</a></li>
+                            <li><a href="auditoria.html#permanente">Legajo Permanente</a></li>
+                            <li><a href="auditoria.html#ejecucion">Legajo de Ejecución</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    <li class="active"><a href="contacto.html">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor general centrado con espacio respecto al menú fijo superior -->
+    <section class="page-container" style="margin-top: 100px; width: 100%; display: flex; justify-content: center; padding: 20px 40px;">
+        
+        <div class="split-container">
+            
+            <!-- Mitad Izquierda: El Formulario -->
+            <div class="form-side">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">Solicitud de Consultoría Financiera</h2>
+                <p style="color: #cccccc; margin-bottom: 30px; font-size: 0.9rem;">Complete el siguiente formulario y un especialista se pondrá en contacto a la brevedad.</p>
+                
+                <form class="contact-form" style="border: none; padding: 0;" onsubmit="event.preventDefault(); alert('Solicitud enviada correctamente. Un consultor se comunicará con usted.');">
+                    <div class="form-group">
+                        <label>Nombre de la Entidad / Organización</label>
+                        <input type="text" required placeholder="Ej. Ministerio u Empresa S.A.">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Contacto Principal</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico Institucional</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Auditoría Requerida</label>
+                        <select required>
+                            <option value="financiera">Auditoría Financiera Externa</option>
+                            <option value="interna">Evaluación de Observaciones de UAI</option>
+                            <option value="procesos">Auditoría de Procesos Internos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Detalles Adicionales de la Solicitud</label>
+                        <textarea rows="4" placeholder="Describa brevemente el alcance requerido..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-action" style="width: 100%; border: none; cursor: pointer;">Enviar Solicitud Formal</button>
+                </form>
+            </div>
+
+            <!-- Mitad Derecha: La Imagen Corporativa -->
+            <div class="image-side">
+                <!-- Reemplaza 'portal.png' por la imagen que desees desplegar en esta sección -->
+                <img src="cont.jfif" alt="Consultoría Técnica FIFTH FIRM">
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
