@@ -6,6 +6,222 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   --- ARQUITECTURA RESPONSIVA DE NAVEGACIÓN (MÓVILES Y TABLETS) ---
+   ========================================================================== */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+    padding: 0;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 4px;
+}
+
+/* Animación de las tres líneas a X */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #b30000;
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #b30000;
+}
+
+/* --- ESTILOS DE LA FLECHA COMO BOTÓN INDEPENDIENTE --- */
+.arrow-btn {
+    display: inline-block;
+    color: #aaaaaa;
+    padding: 10px 20px; /* Área de interacción cómoda */
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.arrow-btn:hover {
+    color: #b30000;
+}
+
+/* Rotación exclusiva de la flecha cuando se activa por JS */
+.arrow-btn.rotated {
+    transform: rotate(180deg);
+    color: #b30000;
+}
+
+/* --- COMPORTAMIENTO EXCLUSIVO EN MÓVILES (< 768px) --- */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 25px;
+    }
+
+    .nav-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Contenedor principal del menú vertical */
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(10, 10, 10, 0.98);
+        border-bottom: 2px solid #b30000;
+        max-height: 0; /* Totalmente comprimido por defecto */
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+    }
+
+    /* Al abrir el menú principal, se adapta dinámicamente */
+    .nav-menu.open {
+        max-height: 600px; 
+        overflow-y: auto;  
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    .nav-menu ul li {
+        width: 100%;
+        position: relative;
+    }
+
+    /* NUEVO: Distribución para que el enlace y la flecha coexistan en la misma línea */
+    .nav-menu ul li.dropdown {
+        display: flex;
+        flex-wrap: wrap; /* Permite que el submenú caiga abajo del todo */
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-menu ul li a {
+        display: block;
+        padding: 15px 30px;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        box-sizing: border-box;
+        border-bottom: none !important;
+        background: transparent;
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* El enlace de auditoría comparte línea, no ocupa el 100% */
+    .nav-menu ul li.dropdown > a {
+        flex: 1; /* Ocupa todo el espacio izquierdo disponible */
+    }
+
+    .nav-menu ul li a:hover, 
+    .nav-menu ul li.active > a {
+        background-color: #161616;
+        color: #ffffff;
+    }
+
+    /* --- SUBMENÚ DE LEGAJOS TOTALMENTE COMPRIMIDO --- */
+    .dropdown-menu {
+        display: none !important; /* Completamente oculto de entrada */
+        position: relative !important; 
+        width: 100%; /* Forzamos a que ocupe todo el ancho inferior al abrirse */
+        top: 0;
+        left: 0;
+        background-color: #060606;
+        border: none;
+        border-left: 4px solid #b30000;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    /* Se muestra únicamente al añadir la clase .show con JS */
+    .dropdown-menu.show {
+        display: block !important; 
+    }
+
+    .dropdown-menu li a {
+        padding: 12px 15px 12px 50px !important; /* Margen interior para los legajos */
+        font-size: 0.85rem;
+        color: #aaaaaa;
+        width: 100%;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #111111;
+        color: #b30000;
+    }
+    
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+    .logo small {
+        display: none; 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
     background-color: #000000;
     color: #ffffff;

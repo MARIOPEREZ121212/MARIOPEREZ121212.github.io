@@ -12,7 +12,7 @@
         .flex-container-custom {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Centra los elementos de la segunda fila automáticamente */
+            justify-content: center; 
             gap: 30px;
             margin-top: 30px;
             max-width: 1200px;
@@ -20,26 +20,23 @@
             margin-right: auto;
         }
 
-        /* Enlaces contenedores que controlan el tamaño de la tarjeta */
         .card-link {
             text-decoration: none; 
             display: block; 
             color: inherit;
-            /* Calcula el ancho para que entren exactamente 3 en la primera línea descontando el espacio del gap */
             width: calc(33.33% - 20px); 
-            min-width: 300px; /* Evita que se colapsen en pantallas medianas */
+            min-width: 300px; 
         }
 
-        /* Ajuste de diseño adaptativo para pantallas más pequeñas */
         @media (max-width: 1024px) {
             .card-link {
-                width: calc(50% - 15px); /* Se acomodan de a 2 si la pantalla es mediana */
+                width: calc(50% - 15px); 
             }
         }
 
         @media (max-width: 768px) {
             .card-link {
-                width: 100%; /* Ocupan todo el ancho en celulares */
+                width: 100%; 
             }
         }
     </style>
@@ -48,21 +45,30 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo"><span>◆</span> FIFTH FIRM <small>Consultora</small></div>
-            <nav>
+            <a href="index.html" class="logo" style="text-decoration: none;">
+                <span>◆</span> FIFTH FIRM <small>Consultora</small>
+            </a>
+            
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li class="dropdown active">
-                        <a href="auditoria.html">Auditoría ▾</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="previo.html">Legajo Previo</a></li>
-                            <li><a href="permanente.html">Legajo Permanente</a></li>
-                            <li><a href="auditoria.html#ejecucion">Legajo de Ejecución</a></li>
-                        </ul>
+                        <a href="auditoria.html" class="dropdown-link">Auditoría</a>
+                        <span class="arrow-btn" id="arrow-toggle">&#9662;</span>
+                        <ul class="dropdown-menu" id="dropdown-sub">
+        <li><a href="previo.html">Legajo Previo</a></li>
+        <li><a href="permanente.html">Legajo Permanente</a></li>
+        <li><a href="ejecucion.html">Legajo de Ejecución</a></li>
+    </ul>
                     </li>
                     <li><a href="nosotros.html">Sobre Nosotros</a></li>
                     <li><a href="contacto.html">Contáctanos</a></li>
-                    
                 </ul>
             </nav>
         </div>
@@ -73,44 +79,77 @@
         <p style="color: #cccccc; margin-bottom: 40px; margin-top: 15px;">Metodología organizada mediante legajos normativos para asegurar la máxima transparencia.</p>
         
         <div class="flex-container-custom">
-            
-            <a href="previo.html" class="card-link">
-                <div class="card" id="previo"> 
-                    <h3>Legajo Previo</h3>
-                    <p>Contiene la documentación de planificación preliminar, correspondencia inicial, evaluación de riesgos inicial y los términos del compromiso de auditoría.</p>
-                </div>
-            </a>
-            
-            <a href="permanente.html" class="card-link">
-                <div class="card" id="permanente">
-                    <h3>Legajo Permanente</h3>
-                    <p>Documentación de vigencia plurianual: estatutos legales, estructura organizativa, manuales de funciones internos, contratos a largo plazo y sistemas de control interno.</p>
-                </div>
-            </a>
-
-            <a href="ejecucion.html" class="card-link">
-                <div class="card" id="ejecucion">
-                    <h3>Planificación de Ejecución</h3>
-                    <p>Estructuración de programas de trabajo analíticos, materialidad de la auditoría y diseño de pruebas sustantivas para la evaluación financiera.</p>
-                </div>
-            </a>
-
-            <a href="hallazgos.html" class="card-link">
-                <div class="card" id="hallazgos">
-                    <h3>Papeles de Trabajo</h3>
-                    <p>Evidencias recopiladas y centralizadas a través de planillas de hallazgos, análisis de saldos y hojas de verificación técnica.</p>
-                </div>
-            </a>
-
-            <a href="comunicacion.html" class="card-link">
-                <div class="card" id="comunicacion">
-                    <h3>Comunicación de Resultados</h3>
-                    <p>Informes técnicos finales, emisión de dictámenes independientes y control del estado de observaciones de auditoría interna.</p>
-                </div>
-            </a>
-
+     <!--       
+    <a href="previo.html?rubro=activos" class="card-link">
+        <div class="card" id="previo"> 
+            <h3>Activos fijos</h3>
+            <p>Control y validación de bienes tangibles de larga duración: constatación física, títulos de propiedad, cálculo de depreciaciones y evaluación de deterioro de valor.</p>
         </div>
+    </a>
+    -->
+    <a href="previo.html?rubro=inventarios" class="card-link">
+        <div class="card" id="permanente">
+            <h3>Inventarios</h3>
+            <p>Fiscalización de existencias destinadas a la producción o venta: presencia en conteo físico, pruebas de costo de valuación y análisis de obsolescencia.</p>
+        </div>
+    </a>
+
+    <a href="previo.html?rubro=cobrar" class="card-link">
+        <div class="card" id="ejecucion">
+            <h3>Cuentas por cobrar</h3>
+            <p>Validación de derechos de cobro pendientes: circularización de saldos con clientes, análisis de antigüedad de cartera y estimación de cuentas incobrables.</p>
+        </div>
+    </a>
+  <!--   
+    <a href="previo.html?rubro=patrimonio" class="card-link">
+        <div class="card" id="hallazgos">
+            <h3>Patrimonio</h3>
+            <p>Revisión del valor residual y fondos propios: cotejo de escrituras de capital social, revisión de actas de accionistas y distribución legal de utilidades.</p>
+        </div>
+    </a>
+
+    <a href="previo.html?rubro=pasivos" class="card-link">
+        <div class="card" id="comunicacion">
+            <h3>Pasivo corriente y no corriente</h3>
+            <p>Examen de obligaciones financieras y comerciales: confirmación de deudas con terceros, clasificación por vencimiento (corto y largo plazo) y búsqueda de pasivos omitidos.</p>
+        </div>
+    </a>
+-->
+</div>
     </section>
 
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const arrowToggle = document.getElementById('arrow-toggle');
+        const dropdownSub = document.getElementById('dropdown-sub');
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            
+            if(!navMenu.classList.contains('open')) {
+                dropdownSub.classList.remove('show');
+                arrowToggle.classList.remove('rotated');
+            }
+        });
+
+        arrowToggle.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation();
+            dropdownSub.classList.toggle('show');
+            arrowToggle.classList.toggle('rotated');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('open');
+                dropdownSub.classList.remove('show');
+                arrowToggle.classList.remove('rotated');
+            }
+        });
+    </script>
 </body>
 </html>

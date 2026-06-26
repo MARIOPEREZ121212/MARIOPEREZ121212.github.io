@@ -6,17 +6,16 @@
     <title>Documentación de Auditoría - FIFTH FIRM</title>
     <link rel="stylesheet" href="estilo.css">
     <style>
-        /* Estilos para lograr que el visor ocupe casi toda la pantalla */
         .pdf-viewer-container {
             width: 100%;
-            height: 85vh; /* Ocupa el 85% de la altura de la ventana del navegador */
-            margin-top: 100px; /* Margen para que el menú fijo de arriba no lo tape */
+            height: 85vh; 
+            margin-top: 100px; 
             padding: 0 5%;
         }
         iframe {
             width: 100%;
             height: 100%;
-            border: 2px solid #b30000; /* Elegante borde rojo corporativo */
+            border: 2px solid #b30000; 
         }
     </style>
 </head>
@@ -24,17 +23,27 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo"><span>◆</span> FIFTH FIRM <small>Consultora</small></div>
-            <nav>
+            <a href="index.html" class="logo" style="text-decoration: none;">
+                <span>◆</span> FIFTH FIRM <small>Consultora</small>
+            </a>
+            
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
                 <ul>
-                    <li class="active"><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html">Inicio</a></li>
                     <li class="dropdown">
-                        <a href="auditoria.html">Auditoría &#9662;</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="auditoria.html#previo">Legajo Previo</a></li>
-                            <li><a href="auditoria.html#permanente">Legajo Permanente</a></li>
-                            <li><a href="auditoria.html#ejecucion">Legajo de Ejecución</a></li>
-                        </ul>
+                        <a href="auditoria.html" class="dropdown-link">Auditoría</a>
+                        <span class="arrow-btn" id="arrow-toggle">&#9662;</span>
+                        <ul class="dropdown-menu" id="dropdown-sub">
+        <li><a href="previo.html">Legajo Previo</a></li>
+        <li><a href="permanente.html">Legajo Permanente</a></li>
+        <li><a href="ejecucion.html">Legajo de Ejecución</a></li>
+    </ul>
                     </li>
                     <li><a href="nosotros.html">Sobre Nosotros</a></li>
                     <li><a href="contacto.html">Contáctanos</a></li>
@@ -44,8 +53,70 @@
     </header>
 
     <div class="pdf-viewer-container">
-        <iframe src="previo.pdf"></iframe>
-    </div>
+    <iframe id="pdf-visor" src="previo.pdf"></iframe>
+</div>
 
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+    // 1. Capturamos los parámetros de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const rubroSeleccionado = urlParams.get('rubro');
+
+    // 2. Seleccionamos el iframe mediante su ID
+    const iframe = document.getElementById('pdf-visor');
+
+    // 3. Evaluamos la variable y asignamos el PDF correspondiente
+    if (rubroSeleccionado) {
+        
+        if (rubroSeleccionado === 'activos') {
+            iframe.src = "activos_fijos.pdf";
+        } 
+        else if (rubroSeleccionado === 'inventarios') {
+            iframe.src = "INVENTARIO.pdf";
+        } 
+        else if (rubroSeleccionado === 'cobrar') {
+            iframe.src = "CUENTAS POR COBRAR AUDI.pdf";
+        } 
+        else if (rubroSeleccionado === 'patrimonio') {
+            iframe.src = "patrimonio.pdf";
+        } 
+        else if (rubroSeleccionado === 'pasivos') {
+            iframe.src = "pasivos.pdf";
+        }
+        
+    }
+});
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const arrowToggle = document.getElementById('arrow-toggle');
+        const dropdownSub = document.getElementById('dropdown-sub');
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            
+            if(!navMenu.classList.contains('open')) {
+                dropdownSub.classList.remove('show');
+                arrowToggle.classList.remove('rotated');
+            }
+        });
+
+        arrowToggle.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation();
+            dropdownSub.classList.toggle('show');
+            arrowToggle.classList.toggle('rotated');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('open');
+                dropdownSub.classList.remove('show');
+                arrowToggle.classList.remove('rotated');
+            }
+        });
+    </script>
 </body>
 </html>
