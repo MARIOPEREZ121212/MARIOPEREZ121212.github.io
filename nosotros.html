@@ -26,12 +26,12 @@
                     <li><a href="index.html">Inicio</a></li>
                     <li class="dropdown">
                         <a href="auditoria.html" class="dropdown-link">Auditoría</a>
-                        <span class="arrow-btn" id="arrow-toggle">&#9662;</span>
+                        <span class="arrow-btn" id="arrow-toggle">▾</span>
                         <ul class="dropdown-menu" id="dropdown-sub">
-        <li><a href="previo.html">Legajo Previo</a></li>
-        <li><a href="permanente.html">Legajo Permanente</a></li>
-        <li><a href="ejecucion.html">Legajo de Ejecución</a></li>
-    </ul>
+                            <li><a href="previo.html">Legajo Previo</a></li>
+                            <li><a href="permanente.html">Legajo Permanente</a></li>
+                            <li><a href="ejecucion.html">Legajo de Ejecución</a></li>
+                        </ul>
                     </li>
                     <li class="active"><a href="nosotros.html">Sobre Nosotros</a></li>
                     <li><a href="contacto.html">Contáctanos</a></li>
@@ -60,23 +60,29 @@
         
         <div class="team-grid">
             <div class="team-card">
-                <img src="andres.jpg" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+1'">
+                <div class="img-hover-container">
+                    <img src="andres.jpg" data-large="andres.jpg" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+1'">
+                </div>
                 <h4>Lic. Cpa. Sergio Andres Miranda Guarayo</h4>
                 <p>Gerente U.A.F. / Especialista Legal</p>
             </div>
+            
             <div class="team-card">
-                <img src="miguel.png" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+2'">
+                <div class="img-hover-container">
+                    <img src="miguel.png" data-large="hojamiguel.png" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+2'">
+                </div>
                 <h4>Lic. Cpa. Mario Miguel Perez Añaguaya</h4>
                 <p>Supervisor U.A.F. / Especialista en Control Interno</p>
             </div>
             
-            <div class="team-card" >
-                
-                <img src="yuli.jpg" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+3'">
+            <div class="team-card">
+                <div class="img-hover-container">
+                    <img src="yuli.jpg" data-large="hojayuli.png" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+3'">
+                </div>
                 <h4>Lic. Cpa. Yhulisa Sara Quispe Taraniapo</h4>
                 <p>Auditor / Consultor de Procesos de Auditoría</p>
-                
             </div>
+            
             <div class="team-card" style="visibility: hidden;">
                 <!--  
                 <img src="integrante4.jpg" alt="Consultor" onerror="this.src='https://placehold.co/300x350/222/fff?text=Consultor+4'">
@@ -91,7 +97,6 @@
                 <p>Asesor Normativo Institucional</p>
                 -->
             </div>
-            
         </div>
 
         <div class="location-section" style="margin-top: 80px;">
@@ -102,12 +107,17 @@
         </div>
     </section>
 
+    <div id="image-modal" class="modal-overlay">
+        <img id="modal-img" src="" alt="Vista ampliada">
+    </div>
+
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
         const arrowToggle = document.getElementById('arrow-toggle');
         const dropdownSub = document.getElementById('dropdown-sub');
 
+        // Lógica del menú móvil
         mobileMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             mobileMenuBtn.classList.toggle('active');
@@ -132,6 +142,28 @@
                 navMenu.classList.remove('open');
                 dropdownSub.classList.remove('show');
                 arrowToggle.classList.remove('rotated');
+            }
+        });
+
+        // Lógica para la vista de imagen en pantalla completa (Cargando imagen DIFERENTE)
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-img');
+        const teamImages = document.querySelectorAll('.img-hover-container img');
+
+        teamImages.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                modal.classList.add('active');
+                // Toma el valor de 'data-large' que contiene la otra foto diferente
+                modalImg.src = img.getAttribute('data-large');
+            });
+        });
+
+        // Cierra el modal si se hace clic en el fondo oscuro exterior
+        modal.addEventListener('click', (e) => {
+            if (e.target !== modalImg) {
+                modal.classList.remove('active');
             }
         });
     </script>

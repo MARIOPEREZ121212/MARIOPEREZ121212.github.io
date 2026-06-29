@@ -18,6 +18,125 @@
 
 
 
+
+
+
+/* --- EFECTO ZOOM/IMAGEN GRANDE PARA EL EQUIPO --- */
+.img-hover-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: visible; /* Permite que el zoom salga de los límites de la tarjeta */
+    margin-bottom: 15px;
+    z-index: 5;
+}
+
+.team-card .img-hover-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 2px solid #222;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* Cuando pasas el cursor, la imagen se agranda elegantemente */
+.team-card:hover .img-hover-container img {
+    transform: scale(1.25); /* Agranda la imagen un 25% */
+    z-index: 999; /* La pone por encima de cualquier otro elemento */
+    border: 2px solid #b30000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Asegura que la tarjeta activa se superponga al resto */
+.team-card {
+    transition: transform 0.3s, border-color 0.3s, z-index 0.3s;
+}
+.team-card:hover {
+    z-index: 10;
+}
+
+/* --- ESTILOS PARA LA VISTA EN PANTALLA COMPLETA (MODAL) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro con 90% de opacidad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Por encima de todo, incluyendo el header fixed */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Estado activo del modal */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Estilo de la imagen grande centrada */
+.modal-overlay img {
+    max-width: 85%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 3px solid #b30000; /* Marco rojo distintivo de la firma */
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(179, 0, 0, 0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+/* Pequeña animación de crecimiento al abrirse */
+.modal-overlay.active img {
+    transform: scale(1);
+}
+
+// Lógica para la vista de imagen en pantalla completa
+const modal = document.getElementById('image-modal');
+const modalImg = document.getElementById('modal-img');
+const teamImages = document.querySelectorAll('.img-hover-container img');
+
+teamImages.forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modal.classList.add('active');
+        
+        // --- ESTA ES LA LÍNEA QUE CAMBIA ---
+        // En vez de usar img.src, lee la imagen diferente guardada en data-large
+        modalImg.src = img.getAttribute('data-large'); 
+    });
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target !== modalImg) {
+        modal.classList.remove('active');
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
    --- ARQUITECTURA RESPONSIVA DE NAVEGACIÓN (MÓVILES Y TABLETS) ---
    ========================================================================== */
